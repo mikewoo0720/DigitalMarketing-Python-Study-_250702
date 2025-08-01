@@ -19,11 +19,7 @@ SELECT * FROM students;
 -- INSERT INTO students VALUES(1, "강백호", 15, "8학년");
 
 INSERT INTO students (name, age, grade)
-VALUES
-("서태웅", "15", "8학년"),
-("서태웅1", "151", "38학년"),
-("서태웅2", "15", "83학년")
-;
+VALUES("서태웅", "15", "8학년");
 
 INSERT INTO students (grade, name, age)
 VALUES("10학년", "채치수", "17");
@@ -41,5 +37,3 @@ SELECT name, grade FROM students;
 SELECT * FROM students WHERE age = 16;#대입연산자
 SELECT * FROM students WHERE age != 15;#부정연산자 -1
 SELECT * FROM students WHERE age <> 15;#부정연산자 -2
-
-SHOW DATABASES;
