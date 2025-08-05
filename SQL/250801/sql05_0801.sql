@@ -7,3 +7,7 @@ CREATE TABLE IF NOT EXISTS performances (
     date_range VARCHAR(100),
     place VARCHAR(100)
 );
+
+DESC performances;
+
+SELECT * FROM performances;
