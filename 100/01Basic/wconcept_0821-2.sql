@@ -81,6 +81,7 @@ JOIN category cg USING(category_id)
 GROUP BY customer_id, cg.category_id
 ORDER BY COUNT(cg.category_id) DESC;
 
+use sakila;
 #다시 위의 구한 값에서 조건으로 구하기 누가 제일 많이 빌렸나 구하기
 SELECT
     CONCAT(ct.first_name, ' ', ct.last_name) AS customer_name,
@@ -110,3 +111,33 @@ HAVING COUNT(cg.category_id) = (
     ) AS category_counts
 )
 ORDER BY cg.category_id;
+
+#with문 사용
+WITH customer_category_counts AS (
+    SELECT
+        ct.customer_id,
+        CONCAT(ct.first_name, ' ', ct.last_name) AS customer_name,
+        cg.category_id,
+        cg.name AS category_name,
+        COUNT(*) AS rental_count
+    FROM customer ct
+    JOIN rental r USING(customer_id)
+    JOIN inventory i USING(inventory_id)
+    JOIN film f USING(film_id)
+    JOIN film_category fc USING(film_id)
+    JOIN category cg USING(category_id)
+    GROUP BY ct.customer_id, cg.category_id
+),
+-- 2단계: 카테고리별 최댓값만 뽑기
+category_max AS (
+    SELECT category_id, MAX(rental_count) AS max_rent
+    FROM customer_category_counts
+    GROUP BY category_id
+)
+-- 3단계: 최댓값과 매칭되는 고객만 가져오기
+SELECT ccc.customer_name, ccc.customer_id,
+       ccc.category_id, ccc.category_name, ccc.rental_count
+FROM customer_category_counts ccc
+JOIN category_max cm ON ccc.category_id = cm.category_id
+                    AND ccc.rental_count = cm.max_rent
+ORDER BY ccc.category_id;
