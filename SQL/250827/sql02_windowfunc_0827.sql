@@ -6,21 +6,21 @@ SELECT title, length FROM film ORDER BY length DESC; # -> 상영시간을 기준
 SELECT 
 	title,
     length,
-    RANK() OVER (ORDER BY length DESC) AS ranking -- 상영시간을 기준으로 랭크값을 아래차순으로 매기겠다!
+    RANK() OVER (ORDER BY length DESC) AS ranking -- 상영시간을 기준으로 랭크값을 내림차순으로 매기겠다!
 FROM film ORDER BY length DESC;
 
 ### DENSE_RANK() -- 공동으로 1등에서부터 순차적으로 순위를 매겨줌
 SELECT 
 	title,
     length,
-    DENSE_RANK() OVER (ORDER BY length DESC) AS dense_ranking -- 상영시간을 기준으로 랭크값을 아래차순으로 매기겠다!
+    DENSE_RANK() OVER (ORDER BY length DESC) AS dense_ranking -- 상영시간을 기준으로 랭크값을 내림차순으로 매기겠다!
 FROM film ORDER BY length DESC;
 
 ### ROW_NUMBER() -- 공동으로 있어도 쭉올림(이떄 순위는 title의 알파벳을 기준으로 내림차순)
 SELECT 
 	title,
     length,
-    ROW_NUMBER() OVER (ORDER BY length DESC) AS row_numbers -- 상영시간을 기준으로 랭크값을 아래차순으로 매기겠다!
+    ROW_NUMBER() OVER (ORDER BY length DESC) AS row_numbers -- 상영시간을 기준으로 랭크값을 내림차순으로 매기겠다!
 FROM film ORDER BY length DESC;
 
 ### 응용
