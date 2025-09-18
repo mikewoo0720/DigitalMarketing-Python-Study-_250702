@@ -1,5 +1,5 @@
-# 특정 압축파일 무시
-00_PANDASPLOTLY_FUNCODING_FIRSTDATA_V3_1.zip
+# pandas 폴더 안의 특정 압축파일 무시
+pandas/00_PANDASPLOTLY_FUNCODING_FIRSTDATA_V3_1.zip
 
-# 특정 폴더 무시
-00_PANDASPLOTLY_FUNCODING_FIRSTDATA_V3_1/
+# pandas 폴더 안의 특정 폴더 무시
+pandas/00_PANDASPLOTLY_FUNCODING_FIRSTDATA_V3_1/
